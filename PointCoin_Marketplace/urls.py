@@ -8,5 +8,6 @@ urlpatterns = patterns('',
     # url(r'^$', 'PointCoin_Marketplace.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
+    url(r'^', include('pointlist.urls', namespace="pointlist")),  # used to get pointlist urls
     url(r'^admin/', include(admin.site.urls)),
 )

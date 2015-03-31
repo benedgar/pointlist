@@ -1,9 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+{% extends 'pointlist/defaults.html' %}
 
-</body>
-</html>
+{% block body %}
+    <h1>Welcome to PointList!!!</h1>
+
+    <h2>{{ text.title }}</h2>
+
+    <p>{{ text.text }} </p>
+
+    <p><a class="btn btn-default" href="#" role="button">{{ text.button_name }} &raquo;</a></p>
+{% endblock %}

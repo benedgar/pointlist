@@ -9,3 +9,6 @@ class Post(models.Model):
     description = models.CharField(max_length=500)
     public_address = models.CharField(max_length=34)
     '''doc string'''
+
+
+

@@ -24,7 +24,6 @@ def bootstrap(request):
 
 
     context = {#'login_form': form,
-               #'hid_login': True,
                'text': {'title': 'Test', 'text': text, 'button_name': 'Button Text'},
                }
     add_to_context(request, 'user_name', context)

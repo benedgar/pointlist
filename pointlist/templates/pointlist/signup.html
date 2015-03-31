@@ -1,0 +1,83 @@
+{% extends 'pointlist/defaults.html' %}
+{% block head %}
+    <!-- TODO: improve this and move it to a CSS file-->
+    <style>
+        table {
+            margin: 0 auto; /* or margin: 0 auto 0 auto */
+
+        }
+
+        tr:first-child th:first-child {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            padding-left: 15px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <br/><br/>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <form action='/register' method='post' class="form-horizontal" role="form">{% csrf_token %}
+                    <div class="center-block">
+                        <table style="width: 50%">
+                            <tr>
+                                <td>
+                                    <div class="has-feedback {% if form.username.errors %}has-error{% endif %}">
+                                        {{ form.username }}
+                                        {% if form.username.errors %}
+                                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                            <span id="inputError2Status" class="sr-only">(error)</span>{% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="has-feedback {% if form.email.errors %}has-error{% endif %}">
+                                        {{ form.email }}
+                                        {% if form.email.errors %}
+                                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                            <span id="inputError2Status" class="sr-only">(error)</span>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="has-feedback {% if form.password1.errors or form.password2.errors %}has-error{% endif %}">
+                                        {{ form.password1 }}
+                                        {% if form.password1.errors or form.password2.errors %}
+                                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                            <span id="inputError2Status" class="sr-only">(error)</span>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="has-feedback {% if form.password1.errors or form.password2.errors %}has-error{% endif %}">
+                                        {{ form.password2 }}
+                                        {% if form.password1.errors or form.password2.errors %}
+                                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                            <span id="inputError2Status" class="sr-only">(error)</span>
+                                        {% endif %}
+                                    </div>
+
+                            </tr>
+                            <tr>
+                                <td> &nbsp; </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button type="submit" class="purpleButton" style="width: 100%">Register</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -2,8 +2,8 @@ __author__ = 'ag'
 
 from django.contrib.auth import authenticate, login
 from django.views.generic import CreateView
-from webportal.forms.tools import DivErrorList
-from webportal.forms.register import SignUpForm
+from pointlist.forms.tools import DivErrorList
+from pointlist.forms.register import SignUpForm
 
 
 class SignUpView(CreateView):
@@ -11,8 +11,8 @@ class SignUpView(CreateView):
     This the view for handling the user sign up page.
     """
     form_class = SignUpForm
-    template_name = 'pointcoin/signup.html'
-    success_url = "/pointcoin/profile#update_information"
+    template_name = 'pointlist/signup.html'
+    success_url = "/"
 
     def form_invalid(self, form):
         register_form = SignUpForm(self.request.POST, error_class=DivErrorList)
@@ -30,10 +30,11 @@ class SignUpView(CreateView):
 
     def login(self, register_form):
         un = register_form.cleaned_data.get('username')
-        pw = register_form.cleaned_data.get('pwdFirstTry')
+        pw = register_form.cleaned_data.get('password1')
         user = authenticate(username=un, password=pw)
         if user:
             login(self.request, user)
+
 
     @staticmethod
     def send_registration_email(form):

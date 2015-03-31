@@ -7,6 +7,7 @@ from pointlist.views import account, homepage, register
 urlpatterns = patterns('',
                        # url(r'^register', register.SignUpView.as_view(), name="register"),
                        # url(r'^home', homepage.WelcomeView.as_view(), name="welcome"),
-                       # url(r'^logout$', 'django.contrib.auth.views.logout', {'next_page': '/alzheimers/'}),
+                       # url(r'^logout$', 'django.contrib.auth.views.logout', {'next_page': '/pointlist/'}),
                        url(r'^$', homepage.bootstrap),
+                       url(r'^register', register.SignUpView.as_view(), name="register"),
 )

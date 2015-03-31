@@ -7,6 +7,8 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 # from webportal.views.authentication import login_view, LoginForm
+from pointlist.forms.register import SignUpForm
+
 
 
 
@@ -20,10 +22,10 @@ def add_to_context(request, key, context):
 
 def bootstrap(request):
     # form = LoginForm(request.POST or None)
+    form = SignUpForm
     text = "This is sample text for the home page to text django functionality"
 
-
-    context = {#'login_form': form,
+    context = {'login_form': form,
                #'hid_login': True,
                'text': {'title': 'Test', 'text': text, 'button_name': 'Button Text'},
                }

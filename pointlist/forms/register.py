@@ -14,9 +14,9 @@ class SignUpForm(UserCreationForm):
                                 error_messages={'invalid': "This value may contain only letters, numbers and @/./+/-/_"
                                                            " characters."},
                                 widget=forms.TextInput(attrs={'placeholder': 'Username', 'class': 'form-control'}))
-    pwdFirstTry = CharField(label="Password",
+    password1 = CharField(label="Password",
                           widget=forms.PasswordInput(attrs={'placeholder': 'Password', 'class': 'form-control'}))
-    pwdSecondTry = CharField(label="Password Confirmation",
+    password2 = CharField(label="Password Confirmation",
                           widget=forms.PasswordInput(
                               attrs={'placeholder': 'Confirm Password', 'class': 'form-control'}))
 
@@ -39,7 +39,7 @@ class SignUpForm(UserCreationForm):
 
     def clean(self):
         cd = self.cleaned_data
-        pw1 = cd.get('pwdFirstTry')
+        pw1 = cd.get('password1')
         err_bool = False
 
         if not pw1:
@@ -49,15 +49,15 @@ class SignUpForm(UserCreationForm):
             if len(pw1) < 7:
                 msg = "Password requires 7+ characters"
                 err_bool = True
-            elif 'pwdSecondTry' in self.errors:
+            elif 'password2' in self.errors:
                 msg = "Passwords do not match"
                 err_bool = True
 
         if err_bool:
-            self._errors['pwdFirstTry'] = self.error_class([msg])
-            if key_in_adt("pwdFirstTry", cd):
-                del cd["pwdFirstTry"]
-            self.fields['pwdFirstTry'].widget = forms.PasswordInput(
+            self._errors['password1'] = self.error_class([msg])
+            if key_in_adt("password1", cd):
+                del cd["password1"]
+            self.fields['password1'].widget = forms.PasswordInput(
                 attrs={'placeholder': msg, 'class': 'form-control', 'id': 'inputError2'})
 
         return cd

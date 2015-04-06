@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 
+TYPE_OF_POST_CHOICES = ((0, 'Buyer'), (1, 'Seller'))
 
 class Person(models.Model):
     uid = models.OneToOneField(User)
@@ -32,7 +33,7 @@ class Post(models.Model):
     name = models.CharField(max_length=140)
     description = models.CharField(max_length=500)
     public_address = models.CharField(max_length=34)
-    type_of_post = models.IntegerField()
+    type_of_post = models.IntegerField(choices=TYPE_OF_POST_CHOICES)
 
 
 

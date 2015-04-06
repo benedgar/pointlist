@@ -1,0 +1,94 @@
+{% extends 'pointlist/defaults.html' %}
+{% block head %}
+    <!-- TODO: improve this and move it to a CSS file-->
+    <style>
+        table {
+            margin: 0 auto; /* or margin: 0 auto 0 auto */
+
+        }
+
+        tr:first-child th:first-child {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            padding-left: 15px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <br/><br/>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Create a New Post!</h2>
+                <form action='/create_post' method='post' class="form-horizontal" role="form">{% csrf_token %}
+                    <div class="center-block">
+                        <table style="width: 50%">
+                            <tr>
+                                <td>
+                                    <div class="has-feedback {% if form.name.errors %}has-error{% endif %}">
+                                        {{ form.name }}
+                                        {% if form.name.errors %}
+                                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                            <span id="inputError2Status" class="sr-only">(error)</span>{% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="has-feedback {% if form.date.errors %}has-error{% endif %}">
+                                        {{ form.date }}
+                                        {% if form.date.errors %}
+                                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                            <span id="inputError2Status" class="sr-only">(error)</span>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="has-feedback {% if form.description.errors %}has-error{% endif %}">
+                                        {{ form.description }}
+                                        {% if form.description.errors %}
+                                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                            <span id="inputError2Status" class="sr-only">(error)</span>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="has-feedback {% if form.public_address.errors %}has-error{% endif %}">
+                                        {{ form.public_address }}
+                                        {% if form.public_address.errors %}
+                                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                            <span id="inputError2Status" class="sr-only">(error)</span>
+                                        {% endif %}
+                                    </div>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="has-feedback {% if form.type_of_post.errors %}has-error{% endif %}">
+                                        {{ form.type_of_post }}
+                                        {% if form.type_of_post.errors %}
+                                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                            <span id="inputError2Status" class="sr-only">(error)</span>
+                                        {% endif %}
+                                    </div>
+
+                            </tr>
+                            <tr>
+                                <td> &nbsp; </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button type="submit" class="purpleButton" style="width: 100%">Create Post!</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

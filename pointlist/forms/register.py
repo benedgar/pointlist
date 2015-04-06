@@ -32,10 +32,7 @@ class SignUpForm(UserCreationForm):
         msg = "Username already exists"
         self.fields['username'].widget = forms.TextInput(
             attrs={'placeholder': msg, 'class': 'form-control', 'id': 'inputError2'})
-        # raise forms.ValidationError(
-        # self.error_messages['duplicate_username'],
-        # code='duplicate_username',
-        # )
+
 
     def clean(self):
         cd = self.cleaned_data
@@ -65,7 +62,7 @@ class SignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
         fields = ("username", "email")
-        widgets = {"email": forms.TextInput(attrs={'placeholder': 'email address', 'class': 'form-control'})}
+        widgets = {"email": forms.TextInput(attrs={'placeholder': 'Email Address', 'class': 'form-control'})}
 
     def __init__(self, *args, **kwargs):
         kwargs_new = {'error_class': DivErrorList}

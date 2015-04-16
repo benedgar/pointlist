@@ -6,11 +6,7 @@ TODO: Licence, Authors, Date
 from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-# from webportal.views.authentication import login_view, LoginForm
 from pointlist.forms.register import SignUpForm
-
-
-
 
 
 def add_to_context(request, key, context):

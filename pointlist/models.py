@@ -28,7 +28,7 @@ class Person(models.Model):
             raise StopIteration
 
 class Post(models.Model):
-    uid = models.OneToOneField(User)
+    uid = models.ForeignKey(User) #should be a foreign key
     date = models.DateField()
     name = models.CharField(max_length=140)
     description = models.CharField(max_length=500)

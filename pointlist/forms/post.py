@@ -9,10 +9,9 @@ from webportal.forms.tools import DivErrorList
 class PostForm(ModelForm):
     class Meta:
         model = Post
-        fields = ['uid', 'date', 'name', 'description', 'public_address', 'type_of_post']
+        fields = ['date', 'name', 'description', 'public_address', 'type_of_post']
 
     this_year = datetime.date.today().year
-    uid = IntegerField(required=False)
     name = CharField(max_length=140, label='Post Title', required=True, widget=TextInput(
         attrs={'placeholder': 'Title', 'class': 'form-control'}
     ))

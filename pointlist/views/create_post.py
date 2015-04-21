@@ -4,26 +4,27 @@ from django.contrib.auth import authenticate, login
 from django.views.generic import CreateView
 from pointlist.forms.tools import DivErrorList
 from pointlist.forms.post import PostForm
+from pointlist.models import Post
+from pointlist.views.homepage import bootstrap
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
-# @login_required
+
 class CreatePostView(CreateView):
     """
-    This the view for handling the user sign up page.
+    This the view for handling the user post page.
     """
     form_class = PostForm
     template_name = 'pointlist/post_form.html'
     success_url = "/"
 
-    # def request(self):
-    #     self.form_class = PostForm(uid=self.request.user)
-    # @login_required
-    # def dispatch(self):
-    # def dispatch(self, *args, **kwargs):
-    #     return super(CreatePostView, self).dispatch(*args, **kwargs)
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(CreatePostView, self).dispatch(*args, **kwargs)
 
     def form_invalid(self, form):
         print 'in form invalid'
+        # print 'UID: ' + str(form[''])
         post_form = PostForm(self.request.POST, error_class=DivErrorList)
         return super(CreatePostView, self).form_invalid(post_form)
 
@@ -33,13 +34,14 @@ class CreatePostView(CreateView):
         It should return an HttpResponse.
         """
         print 'in form valid'
-        obj = post_form.save(commit=False)
-        obj.uid = self.request.user
-        obj.save()
-        print 'user id: ' + str(obj.uid)
-        # post_form.instance.uid = self.request.user
-        # print 'user id: ' + str(post_form.instance.uid)
-        # post_form.save()
-        return super(CreatePostView, self).form_valid(post_form)
-
+        cd = post_form.cleaned_data
+        new_post = Post(uid=self.request.user,
+                        date=cd['date'],
+                        name=cd['name'],
+                        description=cd['description'],
+                        public_address=cd['public_address'],
+                        type_of_post=cd['type_of_post'])
+        new_post.save()
+        print 'new post saved'
+        return bootstrap(self.request)
 

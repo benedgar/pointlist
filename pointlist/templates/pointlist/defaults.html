@@ -9,12 +9,23 @@
     <!-- Bootstrap -->
     <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
     <link href="{% static "css/bootstrap-theme.min.css" %}" rel="stylesheet">
+
     {% block head %}
 
     {% endblock %}
 
 </head>
 <body>
+<style>
+
+    .wrapper {
+    min-height: 93%;
+    height: auto !important;
+    height: 93%;
+    margin: 0 auto -1em;
+    width: 800px;
+}
+</style>
 
 {% include 'pointlist/navbar.html' %}
 

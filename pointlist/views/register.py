@@ -6,6 +6,7 @@ from django.views.generic import CreateView
 from pointlist.forms.tools import DivErrorList
 from pointlist.forms.register import SignUpForm
 from pointlist.pointcoin_tools import get_new_address
+from os import getcwd, chdir
 from pointlist.views.homepage import bootstrap
 from django.shortcuts import redirect
 
@@ -31,6 +32,8 @@ class SignUpView(CreateView):
         register_form.save()
         self.login(register_form)
         user = User.objects.get(username=register_form.cleaned_data.get('username'))
+        self.request.POST['cwd'] = getcwd()
+        chdir('/home/ubuntu/pointlist/pointlist')
         pa = PointcoinAddress(uid=user,
                               address=get_new_address(),
                               current_amount=0,

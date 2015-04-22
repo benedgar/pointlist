@@ -33,7 +33,7 @@ class SignUpView(CreateView):
         self.login(register_form)
         user = User.objects.get(username=register_form.cleaned_data.get('username'))
         pa = PointcoinAddress(uid=user,
-                              address=get_new_address(),
+                              address=str(get_new_address()),
                               current_amount=0,
                               last_balance=0)
         pa.save()

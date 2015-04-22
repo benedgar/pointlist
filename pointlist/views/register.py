@@ -32,8 +32,6 @@ class SignUpView(CreateView):
         register_form.save()
         self.login(register_form)
         user = User.objects.get(username=register_form.cleaned_data.get('username'))
-        self.request.POST['cwd'] = getcwd()
-        chdir('/home/ubuntu/pointlist/pointlist')
         pa = PointcoinAddress(uid=user,
                               address=get_new_address(),
                               current_amount=0,

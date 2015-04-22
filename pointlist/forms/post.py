@@ -9,7 +9,7 @@ from pointlist.forms.tools import DivErrorList
 class PostForm(ModelForm):
     class Meta:
         model = Post
-        fields = ['name', 'description', 'public_address', 'type_of_post']
+        fields = ['name', 'description', 'price', 'public_address', 'type_of_post']
 
     this_year = datetime.date.today().year
     name = CharField(max_length=140, label='Post Title', required=True, widget=TextInput(
@@ -24,6 +24,9 @@ class PostForm(ModelForm):
                                 widget=Select(choices=TYPE_OF_POST_CHOICES,
                                               attrs={'class': 'selector form-control',
                                                      'style': ''}))
+    price = IntegerField(label='Price', required=True,
+                         widget=TextInput(attrs={'placeholder': 'Price', 'class': 'form-control'}))
+
 
     # def __init__(self, uid=None, *args, **kwargs):
     #     self.uid = uid

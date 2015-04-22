@@ -1,0 +1,24 @@
+{% extends 'pointlist/defaults.html' %}
+
+{% block body %}
+
+    <div class="wrapper">
+
+    <h2>Current Buying Posts: </h2>
+
+    {% for post in post_list_buy %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ post.name }}</h3>
+                </div>
+                <div class="panel-body">
+                    {{ post.description }} <br>
+                    {{ post.public_address }}
+
+                </div>
+            </div>
+
+    {% endfor %}
+    </div>
+
+{% endblock %}

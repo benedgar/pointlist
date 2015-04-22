@@ -40,6 +40,7 @@ class CreatePostView(CreateView):
                         date=datetime.date.today(),
                         name=cd['name'],
                         description=cd['description'],
+                        price=cd['price'],
                         public_address=cd['public_address'],
                         type_of_post=cd['type_of_post'])
         new_post.save()

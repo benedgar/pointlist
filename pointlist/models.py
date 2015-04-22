@@ -40,9 +40,3 @@ class Post(models.Model):
     description = models.CharField(max_length=500)
     public_address = models.CharField(max_length=34)
     type_of_post = models.IntegerField(choices=TYPE_OF_POST_CHOICES)
-
-
-
-class RoleType(models.Model):
-    role_id = models.IntegerField()
-    role_desc = models.CharField(max_length=100)

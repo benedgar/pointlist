@@ -1,10 +1,11 @@
 __author__ = 'ag'
 
-from django.contrib.auth.models import User
+from pointlist.models import User, PointcoinAddress
 from django.contrib.auth import authenticate, login
 from django.views.generic import CreateView
 from pointlist.forms.tools import DivErrorList
 from pointlist.forms.register import SignUpForm
+from pointlist.pointcoin_tools import get_new_address
 from pointlist.views.homepage import bootstrap
 from django.shortcuts import redirect
 
@@ -27,15 +28,14 @@ class SignUpView(CreateView):
         It should return an HttpResponse.
         """
         print 'in form valid'
-        # cd = register_form.cleaned_data
-        # user = User(username=cd['username'],
-        #             password=cd['password1'],
-        #             email=cd['email'])
-        # user.save()
         register_form.save()
         self.login(register_form)
-        #self.send_registration_email(register_form)
-        # return bootstrap(self.request)
+        user = User.objects.get(username=register_form.cleaned_data.get('username'))
+        pa = PointcoinAddress(uid=user,
+                              address=get_new_address(),
+                              current_amount=0,
+                              last_balance=0)
+        pa.save()
         return super(SignUpView, self).form_valid(register_form)
 
     def login(self, register_form):

@@ -12,14 +12,18 @@ def get_new_address():
     This function gets a vanity address associated with the master wallet
     :return: new address
     '''
+    print 'in beginning'
     lastdir = getcwd()
     chdir('/home/ubuntu/pointlist/pointlist')
     process = Popen(['./pointctl', '--wallet', 'walletpassphrase', PASSWORD], stdout=PIPE)
     (output, err) = process.communicate()
     exit_code = process.wait()
+    print 'after logging in output: ' + str(output)
     process = Popen(['./pointctl', '--wallet', 'getnewaddress'], stdout=PIPE)
     (output, err) = process.communicate()
     exit_code = process.wait()
+    print 'after getting new address: ' + str(output)
+    print 'stripped: ' + str(output.strip())
     chdir(lastdir)
     return output.strip()
 

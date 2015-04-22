@@ -10,7 +10,8 @@ urlpatterns = patterns('',
                        url(r'^$', homepage.bootstrap),
                        url(r'^register', register.SignUpView.as_view(), name="register"),
                        url(r'^create_post', create_post.CreatePostView.as_view(), name="create_post"),
-                       url(r'^login', login.Login_view.as_view(), name="login"),
-                       url(r'^logout', 'django.contrib.auth.views.logout', {'next_page': ''})
+                       url(r'^login', login.login_view, name="login"),
+                       url(r'^logout', 'django.contrib.auth.views.logout', {'next_page': ''}),
+                       url(r'^boots', homepage.bootstrap)
 
 )

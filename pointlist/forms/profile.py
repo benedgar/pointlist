@@ -11,7 +11,7 @@ from django.contrib.auth import authenticate
 import django.forms as forms
 
 from pointlist.forms.tools import DateHelper, key_in_adt
-from webportal.models import Person
+from pointlist.models import Person
 
 
 class PersonForm(ModelForm):

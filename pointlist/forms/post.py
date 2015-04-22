@@ -4,7 +4,7 @@ import datetime
 from django.forms import ModelForm, CharField, TextInput, DateField, Select, IntegerField
 from django.forms.extras import SelectDateWidget
 from pointlist.models import Post
-from webportal.forms.tools import DivErrorList
+from pointlist.forms.tools import DivErrorList
 
 class PostForm(ModelForm):
     class Meta:

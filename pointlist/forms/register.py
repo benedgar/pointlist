@@ -4,7 +4,7 @@ from django import forms
 from django.forms import CharField
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from webportal.forms.tools import DivErrorList, key_in_adt
+from pointlist.forms.tools import DivErrorList, key_in_adt
 
 
 class SignUpForm(UserCreationForm):

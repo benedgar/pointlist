@@ -1,3 +1,4 @@
+{% load tags %}
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -22,7 +23,13 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/register">Register/Log in</a></li>
+        {% if request.user.is_authenticated %}
+              <li class="alzNavBarButton"><a href="/pointlist/logout">Logout</a></li>
+        {% else %}
+            <li><a href="/login">Log in</a></li>
+            <li><a href="/register">Register</a></li>
+        {% endif %}
+
       </ul>
     </div>
   </div>

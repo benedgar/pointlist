@@ -1,0 +1,59 @@
+{% extends 'pointlist/defaults.html' %}
+{% block head %}
+    <!-- TODO: improve this and move it to a CSS file-->
+    <style>
+        table {
+            margin: 0 auto; /* or margin: 0 auto 0 auto */
+
+        }
+
+        tr:first-child th:first-child {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            padding-left: 15px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <br/><br/>
+<form class="form-horizontal" action='/login' method='post'>{% csrf_token %}
+  <fieldset style="width: 50%; margin: auto auto; align-content: center">
+    <legend>Login</legend>
+    {# Username #}
+    <div class="form-group">
+      <label for="inputUsername" class="col-lg-2 control-label">Username</label>
+      <div class="col-lg-10">
+         <div class="has-feedback {% if form.username.errors %}has-error{% endif %}">
+         {{ form.username }}
+        {% if form.username.errors %}
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            <span id="inputError2Status" class="sr-only">(error)</span>{% endif %}
+         </div>
+      </div>
+    </div>
+
+    {# Password #}
+    <div class="form-group">
+      <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+      <div class="col-lg-10">
+          <div class="has-feedback {% if form.password.errors %}has-error{% endif %}">
+            {{ form.password }}
+            {% if form.password.errors %}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                <span id="inputError2Status" class="sr-only">(error)</span>
+            {% endif %}
+          </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="reset" class="btn btn-default">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+
+
+  </fieldset>
+</form>
+{% endblock %}

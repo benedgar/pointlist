@@ -7,13 +7,19 @@
     <h2>Current Selling Posts: </h2>
 
     {% for post in post_list_sell %}
-        <div class="panel panel-default">
+
+            <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">{{ post.name }}</h3>
             </div>
             <div class="panel-body">
+                <label for="Description" class="col-lg-2 control-label">Description</label>
                 {{ post.description }} <br>
-                {{ post.public_address }}
+                <label for="Public Address" class="col-lg-2 control-label">Public Address</label>
+                {{ post.public_address }} <br>
+                <label for="Price" class="col-lg-2 control-label">Price</label>
+                {{ post.price }}<br>
+                <button type="wantToBuy" class="btn btn-default">I want to Buy!</button>
 
             </div>
         </div>

@@ -1,5 +1,6 @@
 __author__ = 'ag'
 
+import datetime
 from django.contrib.auth import authenticate, login
 from django.views.generic import CreateView
 from pointlist.forms.tools import DivErrorList
@@ -36,7 +37,7 @@ class CreatePostView(CreateView):
         print 'in form valid'
         cd = post_form.cleaned_data
         new_post = Post(uid=self.request.user,
-                        date=cd['date'],
+                        date=datetime.date.today(),
                         name=cd['name'],
                         description=cd['description'],
                         public_address=cd['public_address'],

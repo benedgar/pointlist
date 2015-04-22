@@ -9,16 +9,12 @@ from webportal.forms.tools import DivErrorList
 class PostForm(ModelForm):
     class Meta:
         model = Post
-        fields = ['date', 'name', 'description', 'public_address', 'type_of_post']
+        fields = ['name', 'description', 'public_address', 'type_of_post']
 
     this_year = datetime.date.today().year
     name = CharField(max_length=140, label='Post Title', required=True, widget=TextInput(
         attrs={'placeholder': 'Title', 'class': 'form-control'}
     ))
-    date = DateField(label='Post Date', required=True, initial=datetime.date.today,
-                     widget=SelectDateWidget(years=range(this_year, this_year + 1, +1),
-                                             attrs={'class': 'form-control',
-                                                    'style': ''}))
     description = CharField(max_length=500, label='Description', required=True,
                             widget=TextInput(attrs={'placeholder': 'Description', 'class': 'form-control'}))
     public_address = CharField(max_length=34, label='Public Address', required=True,

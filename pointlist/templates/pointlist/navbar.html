@@ -14,11 +14,11 @@
       <ul class="nav navbar-nav">
         <li><a href="#">Buyers</a></li>
         <li><a href="#">Sellers</a></li>
-        <li><a href="/create_post"></a>Create A Post</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        {% if request.user.is_authenticated %}
-              <li class="alzNavBarButton"><a href="/pointlist/logout">Logout</a></li>
+        {% if user.is_authenticated %}
+            <li><a href="/create_post">Create A Post</a></li>
+            <li class="alzNavBarButton"><a href="/logout">Logout</a></li>
         {% else %}
             <li><a href="/login">Log in</a></li>
             <li><a href="/register">Register</a></li>

@@ -25,6 +25,7 @@ class Login_view(CreateView):
         This method is called when valid form data has been POSTed.
         It should return an HttpResponse.
         """
+        self.login(login_form)
         return bootstrap(self.request)
 
     def login(self, register_form):

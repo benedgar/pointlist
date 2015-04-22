@@ -1,5 +1,6 @@
 __author__ = 'ag'
 
+from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.views.generic import CreateView
 from pointlist.forms.tools import DivErrorList
@@ -23,6 +24,10 @@ class SignUpView(CreateView):
         This method is called when valid form data has been POSTed.
         It should return an HttpResponse.
         """
+        cd = register_form.cleaned_data
+        user = User(username=cd['username'],
+                    password=cd['password1'])
+        user.save()
         register_form.save()
         self.login(register_form)
         self.send_registration_email(register_form)

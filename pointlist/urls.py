@@ -11,6 +11,6 @@ urlpatterns = patterns('',
                        url(r'^register', register.SignUpView.as_view(), name="register"),
                        url(r'^create_post', create_post.CreatePostView.as_view(), name="create_post"),
                        url(r'^login', login.Login_view.as_view(), name="login"),
-                       url(r'^logout$', 'django.contrib.auth.views.logout', {'next_page': '/pointlist/'})
+                       url(r'^logout', 'django.contrib.auth.views.logout', {'next_page': ''})
 
 )

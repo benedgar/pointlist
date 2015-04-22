@@ -27,6 +27,12 @@ class Person(models.Model):
         else:
             raise StopIteration
 
+class PointcoinAddress(models.Model):
+    uid = models.ForeignKey(User)
+    address = models.CharField(max_length=34)
+    current_amount = models.IntegerField()
+    last_balance = models.IntegerField()
+
 class Post(models.Model):
     uid = models.ForeignKey(User)
     date = models.DateField()

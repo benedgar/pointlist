@@ -1,12 +1,14 @@
 {% extends 'pointlist/defaults.html' %}
 
 {% block body %}
-    <h1>Welcome to PointList!!!</h1>
+
+    <div class="wrapper">
+    <h1>Welcome to PointList!</h1>
 
     <h2>Current Buying Posts: </h2>
 
     {% for post in post_list_buy %}
-        <div class="panel panel-default">
+            <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">{{ post.name }}</h3>
             </div>
@@ -14,12 +16,14 @@
                 {{ post.description }}
             </div>
         </div>
+
     {% endfor %}
 
     <h2>Current Selling Posts: </h2>
 
     {% for post in post_list_sell %}
-        <div class="panel panel-default">
+
+            <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">{{ post.name }}</h3>
             </div>
@@ -28,6 +32,9 @@
             </div>
         </div>
     {% endfor %}
+
+    </div>
+
 
 
 

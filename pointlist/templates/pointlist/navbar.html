@@ -1,4 +1,3 @@
-{% load tags %}
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -15,13 +14,8 @@
       <ul class="nav navbar-nav">
         <li><a href="#">Buyers</a></li>
         <li><a href="#">Sellers</a></li>
+        <li><a href="/create_post"></a>Create A Post</li>
       </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
       <ul class="nav navbar-nav navbar-right">
         {% if request.user.is_authenticated %}
               <li class="alzNavBarButton"><a href="/pointlist/logout">Logout</a></li>

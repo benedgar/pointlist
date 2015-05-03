@@ -5,8 +5,7 @@ from django.contrib.auth import authenticate, login
 from django.views.generic import CreateView
 from pointlist.forms.tools import DivErrorList
 from pointlist.forms.register import SignUpForm
-from pointlist.views.homepage import bootstrap
-from django.shortcuts import redirect
+
 
 
 class SignUpView(CreateView):
@@ -26,16 +25,8 @@ class SignUpView(CreateView):
         This method is called when valid form data has been POSTed.
         It should return an HttpResponse.
         """
-        print 'in form valid'
-        # cd = register_form.cleaned_data
-        # user = User(username=cd['username'],
-        #             password=cd['password1'],
-        #             email=cd['email'])
-        # user.save()
         register_form.save()
         self.login(register_form)
-        #self.send_registration_email(register_form)
-        # return bootstrap(self.request)
         return super(SignUpView, self).form_valid(register_form)
 
     def login(self, register_form):

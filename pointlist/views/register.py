@@ -1,12 +1,10 @@
 __author__ = 'ag'
 
-from django.contrib.auth.models import User
+from pointlist.models import User, PointcoinAddress
 from django.contrib.auth import authenticate, login
 from django.views.generic import CreateView
 from pointlist.forms.tools import DivErrorList
 from pointlist.forms.register import SignUpForm
-
-
 
 class SignUpView(CreateView):
     """
@@ -27,6 +25,14 @@ class SignUpView(CreateView):
         """
         register_form.save()
         self.login(register_form)
+
+        user = User.objects.get(username=register_form.cleaned_data.get('username'))
+        pa = PointcoinAddress(uid=user,
+                              address=str(get_new_address()),
+                              current_amount=0,
+                              last_balance=0)
+        pa.save()
+
         return super(SignUpView, self).form_valid(register_form)
 
     def login(self, register_form):

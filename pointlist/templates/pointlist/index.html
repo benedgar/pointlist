@@ -3,18 +3,28 @@
 {% block body %}
 
     <div class="wrapper">
-    <h1>Welcome to PointList, {{ user.username }}!</h1>
+    {% if user.is_authenticated %}
+        <h1>Welcome to PointList, {{ user.username }}!</h1>
+    {% else %}
+        <h1>Welcome to PointList!</h1>
 
+    {% endif %}
     <h2>Current Buying Posts: </h2>
 
     {% for post in post_list_buy %}
             <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">{{ post.name }}</h3>
+                <h3 class="panel-title">{{ post.name }} by {{ post.uid.username }}</h3>
             </div>
             <div class="panel-body">
+                <label for="Description" class="control-label">Description: </label>
+
                 {{ post.description }} <br>
-                {{ post.public_address }}
+                <label for="Price" class="control-label">Price: </label>
+                {{ post.price }} <br>
+                <button type="wantToSell" class="btn btn-default"><a href="mailto:{{ post.uid.email }}">I want to Sell!</a></button>
+
+
 
             </div>
         </div>
@@ -27,11 +37,17 @@
 
             <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">{{ post.name }}</h3>
+                <h3 class="panel-title">{{ post.name }} by {{ post.uid.username }}</h3>
             </div>
             <div class="panel-body">
+                <label for="Description" class="control-label">Description</label>
                 {{ post.description }} <br>
-                {{ post.public_address }}
+                <label for="Public Address" class="control-label">Public Address</label>
+                {{ post.public_address }} <br>
+                <label for="Price" class="control-label">Price</label>
+                {{ post.price }}<br>
+                <button type="wantToBuy" class="btn btn-default"><a href="mailto:{{ post.uid.email }}">I want to Buy!</a></button>
+
             </div>
         </div>
     {% endfor %}

@@ -1,0 +1,30 @@
+{% extends 'pointlist/defaults.html' %}
+
+{% block body %}
+
+    <div class="wrapper">
+
+        <h2>Current Buying Posts: </h2>
+
+    {% for post in post_list_buy %}
+            <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ post.name }} by {{ post.uid.username }}</h3>
+            </div>
+            <div class="panel-body">
+                <label for="Description" class="control-label">Description: </label>
+
+                {{ post.description }} <br>
+                <label for="Price" class="control-label">Price: </label>
+                {{ post.price }} <br>
+                <button type="wantToSell" class="btn btn-default"><a href="mailto:{{ post.uid.email }}">I want to Sell!</a></button>
+
+
+
+            </div>
+        </div>
+
+    {% endfor %}
+    </div>
+
+{% endblock %}

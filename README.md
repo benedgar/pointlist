@@ -7,7 +7,7 @@ There are a number of cryptocurrency marketplaces that already exist, like [BitD
  While the adoption of PointCoin still needs to grow, we hope this platform will help promote use of the
  cryptocurrency by providing a PointCoin-specific network with which buyers and sellers can meet each other and trade Coin.
 
- See us live here: http://ec2-54-186-109-152.us-west-2.compute.amazonaws.com/
+ See us live here: 52.24.65.30
 
 ###Tests
 To be completed

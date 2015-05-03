@@ -28,14 +28,11 @@ class SignUpView(CreateView):
         This method is called when valid form data has been POSTed.
         It should return an HttpResponse.
         """
-        print 'in form valid'
         register_form.save()
         self.login(register_form)
         user = User.objects.get(username=register_form.cleaned_data.get('username'))
-	addr = get_new_address()
-	print 'ADDRESSSS: ' + addr
         pa = PointcoinAddress(uid=user,
-                              address=str(addr),
+                              address=str(get_new_address()),
                               current_amount=0,
                               last_balance=0)
         pa.save()

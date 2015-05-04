@@ -88,7 +88,7 @@ def spend(amount, toAddress, fromAddress):
 
     # Spending the pointcoin!
     process = Popen(['./pointctl', '--wallet', 'sendfrom', '\"\"',
-                    '\"' + toAddress + '\"', amount], stdout=PIPE)
+                    '\"' + toAddress + '\"', str(amount)], stdout=PIPE)
     (output, err) = process.communicate()
     exit_code = process.wait()
     chdir(lastdir)

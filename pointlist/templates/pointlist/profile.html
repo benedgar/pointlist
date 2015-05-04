@@ -6,6 +6,11 @@
 
 
 {% block body %}
+    <p>
+    To deposit pointcoin, after loading this page send however much you want to deposit to the address shown below,
+    and when the network accepts the transaction click the <em>Check for Deposited PTC</em> button.  The page will
+    refresh and when you come back to the profile page your Balance should be updated.
+    </p>
     <form class="form-horizontal" action='/' method='post'>{% csrf_token %}
       <fieldset style="width: 50%; margin: auto auto; align-content: center">
       <legend>Profile</legend>

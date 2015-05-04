@@ -82,15 +82,17 @@ def spend(amount, toAddress, fromAddress):
     lastdir = getcwd()
     chdir('/home/ubuntu/pointlist/pointlist')
     # Logging into the wallet
-    process = Popen(['./pointctl', '--wallet', 'walletpassphrase', PASSWORD], stdout=PIPE)
+    process = Popen(['./pointctl', '--wallet', 'walletpassphrase', PASSWORD, '&&',
+                     './pointctl', '--wallet', 'sendfrom', '\"\"',
+                     '\"' + toAddress + '\"', str(amount)], stdout=PIPE)
     (output, err) = process.communicate()
     exit_code = process.wait()
 
     # Spending the pointcoin!
-    process = Popen(['./pointctl', '--wallet', 'sendfrom', '\"\"',
-                    '\"' + toAddress + '\"', str(amount)], stdout=PIPE)
-    (output, err) = process.communicate()
-    exit_code = process.wait()
+    # process = Popen(['./pointctl', '--wallet', 'sendfrom', '\"\"',
+    #                 '\"' + toAddress + '\"', str(amount)], stdout=PIPE)
+    # (output, err) = process.communicate()
+    # exit_code = process.wait()
     print output
     chdir(lastdir)
     if len(output) == 64 and ':' not in output:

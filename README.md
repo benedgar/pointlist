@@ -8,6 +8,8 @@ There are a number of cryptocurrency marketplaces that already exist, like [BitD
  cryptocurrency by providing a PointCoin-specific network with which buyers and sellers can meet each other and trade Coin.
 
  See us live here: [52.24.65.30](http://52.24.65.30)
+ 
+ Alternate link: [http://ec2-52-24-65-30.us-west-2.compute.amazonaws.com/](http://ec2-52-24-65-30.us-west-2.compute.amazonaws.com/)
 
 ###Tests
 To be completed

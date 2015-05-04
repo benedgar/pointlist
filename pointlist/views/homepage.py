@@ -20,13 +20,12 @@ def add_to_context(request, key, context):
 def bootstrap(request):
     # form = LoginForm(request.POST or None)
     form = SignUpForm
-    text = "This is sample text for the home page to text django functionality"
 
 
     context = {#'login_form': form,
                'post_list_buy': Post.objects.filter(type_of_post=0),
                'post_list_sell': Post.objects.filter(type_of_post=1),
                'user': request.user,
-               'text': {'title': 'Test', 'text': text, 'button_name': 'Button Text'},
+               'text': {'title': 'Test', 'button_name': 'Button Text'},
                }
     return render(request, 'pointlist/index.html', context)

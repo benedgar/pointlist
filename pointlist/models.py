@@ -6,8 +6,6 @@ TYPE_OF_POST_CHOICES = ((0, 'Buyer'), (1, 'Seller'))
 
 class Person(models.Model):
     uid = models.OneToOneField(User)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
     bio = models.CharField(max_length=200)
     pointcoin_public_address = models.CharField(max_length=50)
 

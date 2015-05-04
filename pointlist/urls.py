@@ -2,7 +2,7 @@ __author__ = 'ag'
 
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from pointlist.views import account, homepage, register, create_post, login, sellers, buyers
+from pointlist.views import account, homepage, register, create_post, login, sellers, buyers, profile
 
 urlpatterns = patterns('',
                        url(r'^logout$', 'django.contrib.auth.views.logout', {'next_page': '/'}),
@@ -14,5 +14,5 @@ urlpatterns = patterns('',
                        url(r'^boots', homepage.bootstrap),
                        url(r'^buyers', buyers.boots, name='buyers'),
                        url(r'^sellers', sellers.boots, name='sellers'),
-                       url(r'^profile', )
+                       url(r'^profile', profile.profile, name='profile')
 )

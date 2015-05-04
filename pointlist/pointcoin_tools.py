@@ -4,20 +4,25 @@ import os
 import json
 from subprocess import Popen, PIPE
 from pointlist.models import PointcoinAddress
+from os import chdir, getcwd
 
-PASSWORD = 'password'
+PASSWORD = 'ILovePoints'
 def get_new_address():
     '''
     This function gets a vanity address associated with the master wallet
     :return: new address
     '''
+    lastdir = getcwd()
+    chdir('/home/ubuntu/pointlist/pointlist')
     process = Popen(['./pointctl', '--wallet', 'walletpassphrase', PASSWORD], stdout=PIPE)
     (output, err) = process.communicate()
     exit_code = process.wait()
     process = Popen(['./pointctl', '--wallet', 'getnewaddress'], stdout=PIPE)
     (output, err) = process.communicate()
     exit_code = process.wait()
-    return output
+    print 'after getting new address: ' + str(output)
+    chdir(lastdir)
+    return output.strip()
 
 def check_balance(address):
     '''
@@ -25,12 +30,15 @@ def check_balance(address):
     :param address:
     :return: balance
     '''
+    lastdir = getcwd()
+    chdir('/home/ubuntu/pointlist/pointlist')
     process = Popen(['./pointctl', '--wallet', 'walletpassphrase', PASSWORD], stdout=PIPE)
     (output, err) = process.communicate()
     exit_code = process.wait()
     process = Popen(['./pointctl', '--wallet', 'listreceivedbyaddress'], stdout=PIPE)
     (output, err) = process.communicate()
     exit_code = process.wait()
+    chdir(lastdir)
     return get_balance(output, address)
 
 def get_balance(output, address):
@@ -55,6 +63,7 @@ def update_last_balance(address):
     '''
     addr = PointcoinAddress.objects.get(address=address)
     addr.last_balance = check_balance(address)
+    addr.save()
     return True
 
 def spend(amount, toAddress, fromAddress):
@@ -70,6 +79,8 @@ def spend(amount, toAddress, fromAddress):
     if address.current_amount < amount:
         print 'Not Successful, not enough funds'
         return False
+    lastdir = getcwd()
+    chdir('/home/ubuntu/pointlist/pointlist')
     # Logging into the wallet
     process = Popen(['./pointctl', '--wallet', 'walletpassphrase', PASSWORD], stdout=PIPE)
     (output, err) = process.communicate()
@@ -80,6 +91,7 @@ def spend(amount, toAddress, fromAddress):
                     '\"' + toAddress + '\"', amount], stdout=PIPE)
     (output, err) = process.communicate()
     exit_code = process.wait()
+    chdir(lastdir)
     if len(output) == 64 and ':' not in output:
         address.current_amount = address.current_amount - amount
         address.save()

@@ -1,0 +1,99 @@
+{% extends 'pointlist/defaults.html' %}
+{% block head %}
+{% endblock %}
+
+
+
+
+{% block body %}
+    <form class="form-horizontal" action='/' method='post'>{% csrf_token %}
+      <fieldset style="width: 50%; margin: auto auto; align-content: center">
+      <legend>Profile</legend>
+        <div class="form-group">
+          <label for="showBalance" class="col-lg-2 control-label">Username</label>
+          <div class="col-lg-10">
+             <div class="has-feedback">
+             {{ username }}
+             </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="showBalance" class="col-lg-2 control-label">Balance</label>
+          <div class="col-lg-10">
+              <div class="has-feedback">
+                {{ balance }}
+              </div>
+          </div>
+        </div>
+          <div class="form-group">
+          <label for="showAddress" class="col-lg-2 control-label">Your Send to Address</label>
+          <div class="col-lg-10">
+              <div class="has-feedback">
+                {{ address }}
+              </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-10 col-lg-offset-2">
+            <button type="deposit" onclick="sendDataDeposit(this)" class="btn btn-default">Check for Deposited PTC</button>
+{#            <button type="spend" onclick="sendData(this)" class="btn btn-primary">Spend PTC</button>#}
+          </div>
+        </div>
+
+
+
+
+  </fieldset>
+
+
+
+    </form>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+/**
+ * Sends an ajax request to profile
+ */
+function sendDataDeposit(val) {
+{#    console.log("in send data deposit");#}
+    var send_url = "/parse_ajax";
+{#    var elem = $(field).find("input")[0];  // TODO selector#}
+{#    if (elem == undefined) {#}
+{#        elem = $(field).find("select")[0];#}
+{#    }#}
+    var send = {};
+    if(username !== undefined) {
+        send['user_name'] = username;
+    }
+    send["store"] = "store";
+{#    send[elem.name] = elem.value;#}
+    $.get(send_url, send, function callback(data) {
+        if (data === "CHANGED") {
+            location.reload();
+{#            if (elem.value === "False") {#}
+{#                $(field).html("No");#}
+{#            } else if (elem.value === "True") {#}
+{#                $(field).html("Yes");#}
+{#            } else if (elem.value == 0) {#}
+{#                $(field).html("Phone");#}
+{#            } else if (elem.value == 1) {#}
+{#                $(field).html("Email");#}
+{#            } else {#}
+{#                $(field).html(elem.value);#}
+{#            }#}
+{#            $(id).css("color", "black");#}
+{#            $(buttons).hidden = false;#}
+{#            $(buttons).html('<a onclick="changeValue(this)">Edit Info</a>');#}
+{#            id = undefined;#}
+        } else {
+            $(id).css("color", "red");
+        }
+    });
+    return false;
+}
+</script>
+{% endblock %}

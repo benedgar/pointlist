@@ -6,8 +6,6 @@ TYPE_OF_POST_CHOICES = ((0, 'Buyer'), (1, 'Seller'))
 
 class Person(models.Model):
     uid = models.OneToOneField(User)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
     bio = models.CharField(max_length=200)
     pointcoin_public_address = models.CharField(max_length=50)
 
@@ -43,9 +41,3 @@ class Post(models.Model):
     price = models.IntegerField()
     public_address = models.CharField(max_length=34)
     type_of_post = models.IntegerField(choices=TYPE_OF_POST_CHOICES)
-
-
-
-class RoleType(models.Model):
-    role_id = models.IntegerField()
-    role_desc = models.CharField(max_length=100)

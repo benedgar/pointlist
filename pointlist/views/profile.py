@@ -12,7 +12,11 @@ from pointlist.views import homepage
 
 def profileView(request):
     template = 'pointlist/profile.html'
-    return render(request, 'pointlist/profile.html', {'user': homepage.bootstrap})
+    addr = PointcoinAddress.objects.get(uid=request.user)
+    update_last_balance(addr.address)
+    return render(request, 'pointlist/profile.html', {'username': request.user,
+                                                      'balance': addr.current_amount,
+                                                      'address': addr.address})
 
 
 @login_required
@@ -33,14 +37,17 @@ def parse_ajax_helper(get, user):
             else:
                 return HttpResponse("ERROR_SPENDING")
         elif 'store' in get:
+            print 'in store yo'
             addr = PointcoinAddress.objects.get(uid=user)
             curr_bal = check_balance(addr.address)
             if curr_bal > addr.last_balance:
+                print 'balance changed'
                 addr.current_amount = curr_bal - addr.last_balance
                 addr.last_balance = curr_bal
                 addr.save()
                 return HttpResponse("CHANGED")
             else:
+                print 'balanced not changed'
                 return HttpResponse("NOT_CHANGED")
         else:
             return HttpResponse("BAD")

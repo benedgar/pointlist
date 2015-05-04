@@ -1,3 +1,5 @@
+from pointlist.pointcoin_tools import get_new_address
+
 __author__ = 'ag'
 
 from pointlist.models import User, PointcoinAddress

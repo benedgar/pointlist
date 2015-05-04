@@ -24,10 +24,12 @@ def parse_ajax(request):
     """
     Parse the ajax request for spending pointcoin
     """
+    print 'in parse ajax'
     return parse_ajax_helper(request.GET, request.user)
 
 
 def parse_ajax_helper(get, user):
+    print 'in parse ajax helper yo'
     try:
         if 'spend' in get and 'amount' in get and 'toAddress' in get:
             addr = PointcoinAddress.objects.get(uid=user)

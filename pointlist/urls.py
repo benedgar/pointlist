@@ -14,5 +14,6 @@ urlpatterns = patterns('',
                        url(r'^boots', homepage.bootstrap),
                        url(r'^profile', profile.profileView, name='profile'),
                        url(r'^buyers', buyers.boots, name='buyers'),
-                       url(r'^sellers', sellers.boots, name='sellers')
+                       url(r'^sellers', sellers.boots, name='sellers'),
+                       url(r'^parse_ajax', profile.parse_ajax, name='parse_ajax'),
 )

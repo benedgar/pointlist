@@ -18,6 +18,7 @@
       <ul class="nav navbar-nav navbar-right">
         {% if user.is_authenticated %}
             <li><a href="/">{{ user.username }}</a></li>
+            <li><a href="/profile">Profile</a></li>
             <li><a href="/create_post">Create A Post</a></li>
             <li class="alzNavBarButton"><a href="/logout">Logout</a></li>
 

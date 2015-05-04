@@ -91,6 +91,7 @@ def spend(amount, toAddress, fromAddress):
                     '\"' + toAddress + '\"', str(amount)], stdout=PIPE)
     (output, err) = process.communicate()
     exit_code = process.wait()
+    print output
     chdir(lastdir)
     if len(output) == 64 and ':' not in output:
         address.current_amount = address.current_amount - amount

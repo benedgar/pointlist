@@ -12,8 +12,7 @@ urlpatterns = patterns('',
                        url(r'^login', login.login_view, name="login"),
                        #url(r'^logout', 'django.contrib.auth.views.logout', {'next_page': ''}),
                        url(r'^boots', homepage.bootstrap),
-                       url(r'^profile', profile.profileView),
+                       url(r'^profile', profile.profileView, name='profile'),
                        url(r'^buyers', buyers.boots, name='buyers'),
-                       url(r'^sellers', sellers.boots, name='sellers'),
-                       url(r'^profile', profile.profile, name='profile')
+                       url(r'^sellers', sellers.boots, name='sellers')
 )
